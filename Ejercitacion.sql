@@ -9,8 +9,7 @@
 
 
 
--- Buscar datos en la tabla.
--- Realizar 5 tipos de consultas distintas sobre la tabla creada.
+
 
 
 -- Crear una base de datos que almacene productos.
@@ -34,7 +33,7 @@ INSERT INTO products (id, product, price, origin, quantity, productdescription, 
 VALUES ("003", "Minas Gerais", "4490.00", "Brasil", "1000", "Azúcar mascabo, fruta madura y chocolate.",  "0");
 
 INSERT INTO products (id, product, price, origin, quantity, productdescription, stock)
-VALUES ("004", "Descubrí+", "3890.00", "Nicaragua, Mexico, Vietnam", "750", "1 Mexico 250g, 1 Nicaragua 250g, 1 Vietnam 250g, Todos estos cafés fueron recién tostados para vos.", "1");
+VALUES ("004", "Descubrí+", "3890.00", "Blend", "750", "1 Mexico 250g, 1 Nicaragua 250g, 1 Vietnam 250g, Todos estos cafés fueron recién tostados para vos.", "1");
 
 INSERT INTO products (id, product, price, origin, quantity, productdescription, stock)
 VALUES ("005", "Chuspa", "1100.00", "Blend", "250", "Notas a Crema & Caramelo", "1");
@@ -64,14 +63,14 @@ SELECT id, stock
 FROM products;
 
 -- second update
-SELECT id, price
+SELECT price
 FROM products;
 
 UPDATE products
 SET price = 5820
-WHERE id = 008;
+WHERE price = 4890;
 
-SELECT id, price
+SELECT price
 FROM products;
 
 -- third update
@@ -79,8 +78,8 @@ SELECT id, origin
 FROM products;
 
 UPDATE products
-SET origin = 'Nicaragua'
-WHERE id = 005;
+SET origin = 'Mexico, Nicaragua, Vietnam'
+WHERE origin = 'Blend';
 
 SELECT id, origin
 FROM products;
@@ -98,3 +97,28 @@ WHERE stock = 0;
 
 SELECT id, stock  
 FROM products;
+
+
+-- Buscar datos en la tabla.
+-- Realizar 5 tipos de consultas distintas sobre la tabla creada.
+
+
+-- 1
+SELECT * FROM products
+WHERE origin = 'Brasil' AND price <'2000'
+
+-- 2
+SELECT * FROM products
+WHERE price BETWEEN 0 AND 1700
+
+-- 3
+SELECT * FROM products
+WHERE quantity IN (1000, 750)
+
+--4
+SELECT * FROM products
+ORDER BY price ASC
+
+--5
+SELECT * FROM products
+WHERE productdescription LIKE ('%Azúcar%')
